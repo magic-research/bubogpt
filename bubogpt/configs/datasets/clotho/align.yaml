@@ -1,0 +1,5 @@
+datasets:
+  clotho_align:
+    data_type: audio
+    build_info:
+      storage: /path/to/clotho

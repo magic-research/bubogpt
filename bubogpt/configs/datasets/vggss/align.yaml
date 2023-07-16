@@ -1,0 +1,6 @@
+datasets:
+  vggss_align:
+    data_type: audio_image
+    build_info:
+      storage: /path/to/vggss
+      ann_files: ["vggss_mult_prefix.json"]

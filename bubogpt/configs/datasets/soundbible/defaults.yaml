@@ -1,0 +1,5 @@
+datasets:
+  soundbible:
+    data_type: audio
+    build_info:
+      storage: /path/to/SoundBible0.tar

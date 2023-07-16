@@ -1,0 +1,30 @@
+model:
+  arch: mm_gpt4
+
+  # Imagebind
+  freeze_imagebind: True
+
+  # Q-Former
+  freeze_qformer: True
+  q_former_model: "/path/to/blip2_pretrained_flant5xxl.pth"
+  num_query_token: 32
+
+  # Vicuna
+  llama_model: "/path/to/vicuna-7b-v0/"
+
+  # generation configs
+  prompt: ""
+
+preprocess:
+    vis_processor:
+        train:
+          name: "imagebind_vision_train"
+          image_size: 224
+        eval:
+          name: "imagebind_vision_eval"
+          image_size: 224
+    text_processor:
+        train:
+          name: "imagebind_caption"
+        eval:
+          name: "imagebind_caption"

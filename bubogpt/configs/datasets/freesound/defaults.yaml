@@ -1,0 +1,5 @@
+datasets:
+  freesound:
+    data_type: audio
+    build_info:
+      storage: /path/to/wavcaps/web_datasets/FreeSound/FreeSound{000000..000524}.tar

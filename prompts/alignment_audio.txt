@@ -1,0 +1,4 @@
+<Audio><ModalityHere></Audio> Describe this audio in detail.
+<Audio><ModalityHere></Audio> Pay attention to this audio and describe what you notice.
+<Audio><ModalityHere></Audio> Please provide a detailed description of the sound.
+<Audio><ModalityHere></Audio> Could you describe the contents of this audio for me? 

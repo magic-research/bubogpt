@@ -1,0 +1,3 @@
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Please find the source that emits the given sound in this image.
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Pay attention to the given audio and image, and tell me where is the sound coming from in this picture.
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Which part of this scene is the source of the given sound?

@@ -1,0 +1,127 @@
+model:
+  arch: mm_gpt4
+  model_type: pretrain_vicuna
+  freeze_imagebind: True
+  freeze_qformer: True
+  max_txt_len: 196
+  end_sym: "###"
+  prompt_path: "prompts/alignment.txt"
+  prompt_template: '###Human: {} ###Assistant: '
+  ckpt: [
+    'bubogpt/output/bindgpt4_stage1_audio_d5c6_global/20230530231/checkpoint_3.pth',
+  ]
+  freeze_llm: True
+  with_bind_head: False
+  use_blip_vision: True
+  joiner_cfg:
+    vision:
+      feat_dim: 1408
+      post_dims: [768,]
+      num_query_token: 32
+      freeze_qformer: True
+      freeze_post: False
+    audio:
+      feat_dim: 768
+      post_dims: [768,]
+      num_query_token: 32
+      freeze_qformer: True
+  
+datasets:
+  # images
+  cc_sbu_align:
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    text_processor:
+      train:
+        name: "imagebind_caption"
+    sample_ratio: 3
+  llava_instruct150:
+    vis_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    text_processor:
+      train:
+        name: "imagebind_caption"
+    sample_ratio: 150
+    data_type: "images"
+  # audio
+  clotho_align:
+    audio_processor:
+      train:
+        name: "imagebind_audio_train"
+        use_global: True
+        clip_duration: 5
+        clips_per_video: 6
+    text_processor:
+      train:
+        name: "imagebind_caption"
+    sample_ratio: 4
+  # image_audio
+  vggss_align:
+    type: "5k"
+    data_type: "audio_image"
+    audio_processor:
+      train:
+        name: "imagebind_audio_train"
+        use_global: True
+        clip_duration: 5
+        clips_per_video: 6
+    text_processor:
+      train:
+        name: "imagebind_caption"
+    # TODO: Fix the mis-alignment in names.
+    image_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    sample_ratio: 5
+  aud_img_neg:
+    data_type: "audio_image"
+    audio_processor:
+      train:
+        name: "imagebind_audio_train"
+        use_global: True
+        clip_duration: 5
+        clips_per_video: 6
+    text_processor:
+      train:
+        name: "imagebind_caption"
+    # TODO: Fix the mis-alignment in names.
+    image_processor:
+      train:
+        name: "blip2_image_train"
+        image_size: 224
+    sample_ratio: 3
+  
+run:
+  task: image_text_pretrain
+  # optimizer
+  lr_sched: "linear_warmup_cosine_lr"
+  init_lr: 3e-5
+  min_lr: 1e-5
+  warmup_lr: 1e-6
+
+  weight_decay: 0.05
+  max_epoch: 10
+  iters_per_epoch: 5000
+  batch_size_train: 12
+  batch_size_eval: 12
+  num_workers: 4
+  warmup_steps: 5000
+
+  seed: 42
+  output_dir: "output/mmgpt4_stage2_mm"
+
+  amp: True
+  resume_ckpt_path: null
+
+  evaluate: False 
+  train_splits: ["train"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True

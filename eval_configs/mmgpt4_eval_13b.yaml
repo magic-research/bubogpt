@@ -1,0 +1,51 @@
+model:
+  arch: mm_gpt4
+  model_type: pretrain_vicuna
+  freeze_imagebind: True
+  freeze_qformer: False
+  max_txt_len: 160
+  end_sym: "###"
+  low_resource: False
+  prompt_path: "prompts/alignment.txt"
+  prompt_template: '###Human: {} ###Assistant: '
+  ckpt: [
+    "bubogpt/output/mmgpt4_stage2_mm_blipvision_13b/20230701204/checkpoint_4.pth",
+  ]
+  with_bind_head: False
+  use_blip_vision: True
+  proj_model: "checkpoints/prerained_minigpt4_13b.pth"
+  llama_model: "/mnt/bn/bykang/chixma/data/pretrained_models/vicuna-13b-v0/"
+  joiner_cfg:
+    # NOTE: uncomment below to share qformer across modalities
+    # share_key: vision
+    vision:
+      feat_dim: 1408
+      post_dims: [768,]
+      num_query_token: 32
+      freeze_qformer: True
+    audio:
+      feat_dim: 768
+
+
+datasets:
+  default:  # Double check
+    vis_processor:
+      eval:
+        name: "imagebind_vision_eval"
+        image_size: 224
+    text_processor:
+      eval:
+        name: "imagebind_caption"
+    audio_processor:
+      eval:
+        name: "imagebind_audio_eval"
+        # d2c18
+        # clip_duration: 2
+        # clips_per_video: 18
+        # d5c6
+        use_global: True
+        clip_duration: 5
+        clips_per_video: 6
+run:
+  task: image_text_pretrain
+  evaluate: True

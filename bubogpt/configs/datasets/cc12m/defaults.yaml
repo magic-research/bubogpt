@@ -1,0 +1,5 @@
+datasets:
+  cc12m:
+    data_type: images
+    build_info:
+      storage: /path/to/cc12m_web/{000000..002221}.tar

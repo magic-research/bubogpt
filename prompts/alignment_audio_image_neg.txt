@@ -1,0 +1,5 @@
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Please describe the image and audio respectively.
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> What is the audio and the image?
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Please provide a detailed description of the sound and the image.
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Could you tell the contents of this audio and photo for me?
+<Audio><ModalityHere></Audio> <Vision><ModalityHere></Vision> Are the audio and image related to each other? What are they?

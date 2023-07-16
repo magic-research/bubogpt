@@ -1,0 +1,10 @@
+datasets:
+  aud_img_neg:
+    data_type: audio_image
+    build_info:
+      image:
+        storage: /path/to/cc_sbu_align
+        ann_files: ['filter_cap.json']
+      audio:
+        storage: /path/to/clotho
+        ann_files: ['audio_cap.json']
