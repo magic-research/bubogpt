@@ -70,5 +70,3 @@ tensorflow-io==0.30.0   # Needed for tensorboard hdfs support
 tqdm==4.64.1
 pytorchvideo==0.1.5
 omegaconf
-git+https://github.com/facebookresearch/segment-anything.git
-git+https://github.com/IDEA-Research/GroundingDINO.git
