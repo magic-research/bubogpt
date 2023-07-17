@@ -44,8 +44,8 @@ pycocoevalcap
 sentence-transformers
 umap-learn
 notebook
-gradio==3.24.1
-gradio-client==0.0.8
+gradio
+gradio-client
 wandb
 ipdb
 torch_time_stretch
