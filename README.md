@@ -7,7 +7,7 @@ class="center">
 
 *A multi-modal LLM capable of jointly understanding of text, vision and audio and grounding knowledge into visual objects.*
 
-[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv]()] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio]()] [[Data]()] [[Model]()]
+[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv](https://arxiv.org/abs/2307.08581)] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio (Coming Soon)]()] [[Data](https://huggingface.co/datasets/magicr/BuboGPT/tree/main)] [[Model](https://huggingface.co/magicr/BuboGPT-ckpt)]
 
 ![bubogpt_framework](https://user-images.githubusercontent.com/17242808/252829452-13b1e34b-3fb3-4c49-b310-89995e406b0a.jpg)
 
