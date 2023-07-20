@@ -41,7 +41,7 @@ mkdir checkpoints && cd checkpoints;
 wget https://huggingface.co/spaces/xinyu1205/recognize-anything/resolve/main/ram_swin_large_14m.pth;
 wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth;
 wget https://huggingface.co/spaces/abhishek/StableSAM/resolve/main/sam_vit_h_4b8939.pth;
-wget https://huggingface.co/magicr/BuboGPT-ckpt/blob/main/bubogpt_7b.pth
+wget https://huggingface.co/magicr/BuboGPT-ckpt/resolve/main/bubogpt_7b.pth
 ```
 
 
