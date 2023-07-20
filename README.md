@@ -7,7 +7,7 @@ class="center">
 
 *A multi-modal LLM capable of jointly understanding of text, vision and audio and grounding knowledge into visual objects.*
 
-[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv](https://arxiv.org/abs/2307.08581)] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio (Coming Soon)]()] [[Data](https://huggingface.co/datasets/magicr/BuboGPT/tree/main)] [[Model](https://huggingface.co/magicr/BuboGPT-ckpt)]
+[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv](https://arxiv.org/abs/2307.08581)] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio (Coming Soon)]()] [[Data](https://huggingface.co/datasets/magicr/BuboGPT/tree/main)] [[Model](https://huggingface.co/magicr/BuboGPT-ckpt/tree/main)]
 
 ![bubogpt_framework](https://user-images.githubusercontent.com/17242808/252829452-13b1e34b-3fb3-4c49-b310-89995e406b0a.jpg)
 
@@ -41,6 +41,7 @@ mkdir checkpoints && cd checkpoints;
 wget https://huggingface.co/spaces/xinyu1205/recognize-anything/resolve/main/ram_swin_large_14m.pth;
 wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth;
 wget https://huggingface.co/spaces/abhishek/StableSAM/resolve/main/sam_vit_h_4b8939.pth;
+wget https://huggingface.co/magicr/BuboGPT-ckpt/blob/main/bubogpt_7b.pth
 ```
 
 
