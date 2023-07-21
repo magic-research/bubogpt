@@ -1,6 +1,4 @@
 git+https://github.com/facebookresearch/segment-anything.git
 git+https://github.com/IDEA-Research/GroundingDINO.git
 fairscale
---extra-index-url https://download.openmmlab.com/mmcv/dist/cu117/torch2.0/index.html
-mmengine==0.7.3
-mmcv==2.0.0
+mmcv==2.0.0 --extra-index-url https://download.openmmlab.com/mmcv/dist/cu117/torch2.0/index.html
