@@ -36,7 +36,7 @@ pip3 install -r requirements.txt
 
 ### Models
 
-Follow the [instruction](https://github.com/Vision-CAIR/MiniGPT-4/blob/main/PrepareVicuna.md) to prepare the pretrained Vicuna weights,
+Follow the [instruction](./PrepareVicuna.md) to prepare the pretrained Vicuna weights,
 and update the `llama_model` in `bubogpt/configs/models/mmgpt4.yaml`.
 
 ```bash
