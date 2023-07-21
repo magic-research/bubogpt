@@ -27,7 +27,7 @@ Our code is based on Python 3.9, CUDA 11.7 and Pytorch 2.0.1.
 
 ```bash
 pip3 install -r requirements.txt
-pip3 install mmmengine==0.7.3 \
+pip3 install mmengine==0.7.3 \
   mmcv==2.0.0 -f https://download.openmmlab.com/mmcv/dist/cu117/torch2.0/index.html \
   git+https://github.com/facebookresearch/segment-anything.git \
   git+https://github.com/IDEA-Research/GroundingDINO.git 
