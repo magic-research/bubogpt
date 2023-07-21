@@ -9,10 +9,12 @@ from segment_anything import build_sam, SamPredictor
 from segment_anything.utils.amg import remove_small_regions
 from PIL import ImageDraw, ImageFont
 
-import groundingdino.util.transforms as T
 from constants.constant import DARKER_COLOR_MAP, LIGHTER_COLOR_MAP, COLORS
-from groundingdino import build_groundingdino
-from groundingdino.util.predict import predict
+import groundingdino.datasets.transforms as T
+# from groundingdino import build_groundingdino
+ 
+from groundingdino.models.GroundingDINO.groundingdino import build_groundingdino
+from groundingdino.util.inference import annotate, load_image, predict
 from groundingdino.util.utils import clean_state_dict
 
 

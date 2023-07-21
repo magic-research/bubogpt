@@ -1,12 +1,17 @@
 import argparse
 import os
 import random
+
 # import sys
 # import os
 #
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # sys.path.append(BASE_DIR)
-
+# os.system("CUDA_HOME=/usr/local/cuda python -m pip uninstall groundingdino")
+os.system("git clone https://github.com/IDEA-Research/GroundingDINO.git"
+          "&& export CUDA_HOME=/usr/local/cuda; pip install -e GroundingDINO")
+import sys
+sys.path.insert(0, './GroundingDINO')
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
@@ -27,7 +32,6 @@ from eval_scripts.conversation import Chat, CONV_X, DummyChat
 from imagebind.models.image_bind import ModalityType
 # from ner import NERModule
 from tagging_model import TaggingModule
-
 
 
 def parse_args():
@@ -67,7 +71,7 @@ args = parse_args()
 
 assert args.dummy or (args.cfg_path is not None), "Invalid Config! Set --dummy or configurate the cfg_path!"
 
-device = 'cuda:{}'.format(args.gpu_id) if torch.cuda.is_available() else 'cpu'
+device = 'cuda'.format(args.gpu_id) if torch.cuda.is_available() else 'cpu'
 
 if not args.dummy:
     cfg = Config(args)
@@ -105,11 +109,11 @@ def gradio_reset(chat_state, emb_list):
     if emb_list is not None:
         emb_list = []
     return None, gr.update(value=None, interactive=True), gr.update(value=None, interactive=False), \
-           gr.update(value=None, interactive=True), \
-           gr.update(placeholder='Please upload your image/audio first', interactive=False), \
-           gr.update(value=None), \
-           gr.update(value="Upload & Start Chat", interactive=True), \
-           chat_state, emb_list, gr.update(value={})
+        gr.update(value=None, interactive=True), \
+        gr.update(placeholder='Please upload your image/audio first', interactive=False), \
+        gr.update(value=None), \
+        gr.update(value="Upload & Start Chat", interactive=True), \
+        chat_state, emb_list, gr.update(value={})
 
 
 def upload_x(gr_img, gr_aud, chat_state):
@@ -128,15 +132,15 @@ def upload_x(gr_img, gr_aud, chat_state):
     if gr_aud is not None:
         chat.upload_aud(gr_aud, chat_state, emb_list)
     return gr.update(interactive=False), gr.update(interactive=False), \
-           gr.update(interactive=True, placeholder='Type and press Enter'), \
-           gr.update(value="Start Chatting", interactive=False), \
-           chat_state, emb_list, state
+        gr.update(interactive=True, placeholder='Type and press Enter'), \
+        gr.update(value="Start Chatting", interactive=False), \
+        chat_state, emb_list, state
 
 
 def gradio_ask(user_message, chatbot, chat_state, text_output, last_answer):
     if len(user_message) == 0:
         return gr.update(interactive=True, placeholder='Input should not be empty!'), chatbot, chat_state, \
-               gr.update(value=None, color_map=None, show_legend=False), gr.update(value=None)
+            gr.update(value=None, color_map=None, show_legend=False), gr.update(value=None)
     if last_answer is not None:
         chatbot[-1][1] = last_answer
     chat.ask(user_message, chat_state)
@@ -187,6 +191,7 @@ def gradio_answer(image, chatbot, chat_state, emb_list, num_beams, temperature, 
             gr.update(value=None), \
             entity_state, \
             gr.update(value=None), gr.update(value=None)
+
 
 def grounding_fn(image, chatbot, entity_state):
     # print("Grounding fn: ", entity_state)
