@@ -211,6 +211,7 @@ def select_fn(image, ground_img, entity_state, evt: gr.SelectData):
     if label is None:
         return ground_img
     print('select_fn ==> current state: ', entity_state)
+    torch.cuda.synchronize()
     if 'grounding' not in entity_state:
         ground_img, local_results = grounding_dino.prompt2mask2(image,
                                                                 ','.join(map(lambda x: x[0], entity_state['tags'])),
