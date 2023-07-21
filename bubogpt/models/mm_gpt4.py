@@ -274,7 +274,7 @@ class MMGPT4(BaseModel):
         with_bind_head = cfg.get("with_bind_head", False)
         freeze_llm = cfg.get("freeze_llm", True)
         use_blip_vision = cfg.get("use_blip_vision", False)
-        proj_model = cfg.get("proj_model", "checkpoints/prerained_minigpt4_7b.pth")
+        proj_model = cfg.get("proj_model", "")
 
         model = cls(
             joiner_cfg=joiner_cfg,

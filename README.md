@@ -44,6 +44,8 @@ wget https://huggingface.co/spaces/abhishek/StableSAM/resolve/main/sam_vit_h_4b8
 wget https://huggingface.co/magicr/BuboGPT-ckpt/resolve/main/bubogpt_7b.pth
 ```
 
+For training, down load MiniGPT-4 [checkpoint](https://drive.google.com/file/d/1RY9jV0dyqLX-o38LrumkKRh6Jtaop58R/view?usp=sharing) to `checkpoints`.
+
 
 ### Data
 #### Stage1
