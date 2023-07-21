@@ -266,7 +266,7 @@ with gr.Blocks() as demo:
             last_answer = gr.State()
             entity_state = gr.State(value={})
             emb_list = gr.State()
-            chatbot = gr.Chatbot(label='BindGPT-4')
+            chatbot = gr.Chatbot(label='BuboGPT')
             text_output = gr.HighlightedText(value=None, label="Response", show_legend=False)
             text_input = gr.Textbox(label='User', placeholder='Please upload your image/audio first', interactive=False)
 

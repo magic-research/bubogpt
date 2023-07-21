@@ -3,6 +3,7 @@ model:
   model_type: pretrain_vicuna
   freeze_imagebind: True
   freeze_qformer: False
+  llama_model: "path/to/pretrained_models/vicuna-7b-v0/"
   joiner_cfg:
     audio:
       feat_dim: 768

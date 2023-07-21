@@ -42,8 +42,10 @@ wget https://huggingface.co/spaces/Vision-CAIR/minigpt4/resolve/main/blip2_pretr
 wget https://huggingface.co/spaces/xinyu1205/recognize-anything/resolve/main/ram_swin_large_14m.pth;
 wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth;
 wget https://huggingface.co/spaces/abhishek/StableSAM/resolve/main/sam_vit_h_4b8939.pth;
-wget https://huggingface.co/magicr/BuboGPT-ckpt/blob/main/bubogpt_7b.pth
+wget https://huggingface.co/magicr/BuboGPT-ckpt/resolve/main/bubogpt_7b.pth
 ```
+
+For training, down load MiniGPT-4 [checkpoint](https://drive.google.com/file/d/1RY9jV0dyqLX-o38LrumkKRh6Jtaop58R/view?usp=sharing) to `checkpoints`.
 
 
 ### Data
@@ -63,7 +65,7 @@ wget https://huggingface.co/magicr/BuboGPT-ckpt/blob/main/bubogpt_7b.pth
 #### Gradio demo
 Run gradio demo with: 
 ```bash
-python3 eval_scripts/qualitative_eval.py --cfg-path eval_configs/mmgpt4_eval.yaml --gpu-id 0
+python3 app.py --cfg-path eval_configs/mmgpt4_eval.yaml --gpu-id 0
 ```
 
 #### Training

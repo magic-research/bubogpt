@@ -8,11 +8,13 @@ model:
   prompt_path: "prompts/alignment.txt"
   prompt_template: '###Human: {} ###Assistant: '
   ckpt: [
-    'bubogpt/output/bindgpt4_stage1_audio_d5c6_global/20230530231/checkpoint_3.pth',
+    'path/to/stage1/ckpt',
   ]
   freeze_llm: True
   with_bind_head: False
   use_blip_vision: True
+  proj_model: "checkpoints/prerained_minigpt4_7b.pth"
+  llama_model: "path/to/pretrained_models/vicuna-7b-v0/"
   joiner_cfg:
     vision:
       feat_dim: 1408
