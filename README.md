@@ -7,7 +7,7 @@ class="center">
 
 *A multi-modal LLM capable of jointly understanding of text, vision and audio and grounding knowledge into visual objects.*
 
-[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv](https://arxiv.org/abs/2307.08581)] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio (Coming Soon)]()] [[Data](https://huggingface.co/datasets/magicr/BuboGPT/tree/main)] [[Model](https://huggingface.co/magicr/BuboGPT-ckpt/tree/main)]
+[[Project Page](https://bubo-gpt.github.io/)] [[Arxiv](https://arxiv.org/abs/2307.08581)] [[Demo Video](https://youtu.be/uRdmC3wPz6k)] [[Gradio](https://huggingface.co/spaces/magicr/BuboGPT)] [[Data](https://huggingface.co/datasets/magicr/BuboGPT/tree/main)] [[Model](https://huggingface.co/magicr/BuboGPT-ckpt/tree/main)]
 
 ![bubogpt_framework](https://user-images.githubusercontent.com/17242808/252829452-13b1e34b-3fb3-4c49-b310-89995e406b0a.jpg)
 
@@ -33,7 +33,7 @@ pip3 install -r requirements.txt
 ### Models
 
 Follow the [instruction](https://github.com/Vision-CAIR/MiniGPT-4/blob/main/PrepareVicuna.md) to prepare the pretrained Vicuna weights,
-and update the `llama_model` in the `bubogpt/configs/models/mmgpt4.yaml`.
+and update the `llama_model` in `bubogpt/configs/models/mmgpt4.yaml`.
 
 ```bash
 ## get pre-trained checkpoints
@@ -98,11 +98,13 @@ class="center">
 
 
 #### 3. Aligned Audio-Image Understanding
+<p align="center">
 <img src="https://user-images.githubusercontent.com/17242808/253727701-c17af96e-1171-453a-be1e-1f36552f24dd.jpg" width=100% height=100% 
 class="center">
 </p>
 
 #### 4. Arbitrary Audio-Image Understanding
+<p align="center">
 <img src="https://user-images.githubusercontent.com/17242808/253727819-8a094456-617a-47d8-bd8a-91f547c5afbe.jpg" width=100% height=100% 
 class="center">
 </p>
