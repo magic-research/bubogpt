@@ -269,12 +269,12 @@ class ImageBindModel(nn.Module):
             depth_stem=None,
         )
 
-        text_preprocessor = TextPreprocessor(
-            context_length=77,
-            vocab_size=49408,
-            embed_dim=text_embed_dim,
-            causal_masking=True,
-        )
+        # text_preprocessor = TextPreprocessor(
+        #     context_length=77,
+        #     vocab_size=49408,
+        #     embed_dim=text_embed_dim,
+        #     causal_masking=True,
+        # )
 
         audio_stem = PatchEmbedGeneric(
             proj_stem=[
@@ -295,73 +295,73 @@ class ImageBindModel(nn.Module):
             audio_stem=audio_stem,
         )
 
-        depth_stem = PatchEmbedGeneric(
-            [
-                nn.Conv2d(
-                    kernel_size=depth_kernel_size,
-                    in_channels=1,
-                    out_channels=depth_embed_dim,
-                    stride=depth_kernel_size,
-                    bias=False,
-                ),
-            ],
-            norm_layer=nn.LayerNorm(normalized_shape=depth_embed_dim),
-        )
-
-        depth_preprocessor = RGBDTPreprocessor(
-            img_size=[1, 224, 224],
-            num_cls_tokens=1,
-            pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
-            rgbt_stem=None,
-            depth_stem=depth_stem,
-        )
-
-        thermal_stem = PatchEmbedGeneric(
-            [
-                nn.Conv2d(
-                    kernel_size=thermal_kernel_size,
-                    in_channels=1,
-                    out_channels=thermal_embed_dim,
-                    stride=thermal_kernel_size,
-                    bias=False,
-                ),
-            ],
-            norm_layer=nn.LayerNorm(normalized_shape=thermal_embed_dim),
-        )
-        thermal_preprocessor = ThermalPreprocessor(
-            img_size=[1, 224, 224],
-            num_cls_tokens=1,
-            pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
-            thermal_stem=thermal_stem,
-        )
-
-        imu_stem = PatchEmbedGeneric(
-            [
-                nn.Linear(
-                    in_features=48,
-                    out_features=imu_embed_dim,
-                    bias=False,
-                ),
-            ],
-            norm_layer=nn.LayerNorm(normalized_shape=imu_embed_dim),
-        )
-
-        imu_preprocessor = IMUPreprocessor(
-            img_size=[6, 2000],
-            num_cls_tokens=1,
-            kernel_size=8,
-            embed_dim=imu_embed_dim,
-            pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
-            imu_stem=imu_stem,
-        )
+        # depth_stem = PatchEmbedGeneric(
+        #     [
+        #         nn.Conv2d(
+        #             kernel_size=depth_kernel_size,
+        #             in_channels=1,
+        #             out_channels=depth_embed_dim,
+        #             stride=depth_kernel_size,
+        #             bias=False,
+        #         ),
+        #     ],
+        #     norm_layer=nn.LayerNorm(normalized_shape=depth_embed_dim),
+        # )
+        #
+        # depth_preprocessor = RGBDTPreprocessor(
+        #     img_size=[1, 224, 224],
+        #     num_cls_tokens=1,
+        #     pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
+        #     rgbt_stem=None,
+        #     depth_stem=depth_stem,
+        # )
+        #
+        # thermal_stem = PatchEmbedGeneric(
+        #     [
+        #         nn.Conv2d(
+        #             kernel_size=thermal_kernel_size,
+        #             in_channels=1,
+        #             out_channels=thermal_embed_dim,
+        #             stride=thermal_kernel_size,
+        #             bias=False,
+        #         ),
+        #     ],
+        #     norm_layer=nn.LayerNorm(normalized_shape=thermal_embed_dim),
+        # )
+        # thermal_preprocessor = ThermalPreprocessor(
+        #     img_size=[1, 224, 224],
+        #     num_cls_tokens=1,
+        #     pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
+        #     thermal_stem=thermal_stem,
+        # )
+        #
+        # imu_stem = PatchEmbedGeneric(
+        #     [
+        #         nn.Linear(
+        #             in_features=48,
+        #             out_features=imu_embed_dim,
+        #             bias=False,
+        #         ),
+        #     ],
+        #     norm_layer=nn.LayerNorm(normalized_shape=imu_embed_dim),
+        # )
+        #
+        # imu_preprocessor = IMUPreprocessor(
+        #     img_size=[6, 2000],
+        #     num_cls_tokens=1,
+        #     kernel_size=8,
+        #     embed_dim=imu_embed_dim,
+        #     pos_embed_fn=partial(SpatioTemporalPosEmbeddingHelper, learnable=True),
+        #     imu_stem=imu_stem,
+        # )
 
         modality_preprocessors = {
             ModalityType.VISION: rgbt_preprocessor,
-            ModalityType.TEXT: text_preprocessor,
+            # ModalityType.TEXT: text_preprocessor,
             ModalityType.AUDIO: audio_preprocessor,
-            ModalityType.DEPTH: depth_preprocessor,
-            ModalityType.THERMAL: thermal_preprocessor,
-            ModalityType.IMU: imu_preprocessor,
+            # ModalityType.DEPTH: depth_preprocessor,
+            # ModalityType.THERMAL: thermal_preprocessor,
+            # ModalityType.IMU: imu_preprocessor,
         }
 
         return nn.ModuleDict(modality_preprocessors)
@@ -424,14 +424,14 @@ class ImageBindModel(nn.Module):
             add_bias_kv=False,
             drop_path=0.0,
         )
-        modality_trunks[ModalityType.TEXT] = instantiate_trunk(
-            text_embed_dim,
-            text_num_blocks,
-            text_num_heads,
-            pre_transformer_ln=False,
-            add_bias_kv=False,
-            drop_path=0.0,
-        )
+        # modality_trunks[ModalityType.TEXT] = instantiate_trunk(
+        #     text_embed_dim,
+        #     text_num_blocks,
+        #     text_num_heads,
+        #     pre_transformer_ln=False,
+        #     add_bias_kv=False,
+        #     drop_path=0.0,
+        # )
         modality_trunks[ModalityType.AUDIO] = instantiate_trunk(
             audio_embed_dim,
             audio_num_blocks,
@@ -440,30 +440,30 @@ class ImageBindModel(nn.Module):
             add_bias_kv=True,
             drop_path=audio_drop_path,
         )
-        modality_trunks[ModalityType.DEPTH] = instantiate_trunk(
-            depth_embed_dim,
-            depth_num_blocks,
-            depth_num_heads,
-            pre_transformer_ln=False,
-            add_bias_kv=True,
-            drop_path=depth_drop_path,
-        )
-        modality_trunks[ModalityType.THERMAL] = instantiate_trunk(
-            thermal_embed_dim,
-            thermal_num_blocks,
-            thermal_num_heads,
-            pre_transformer_ln=False,
-            add_bias_kv=True,
-            drop_path=thermal_drop_path,
-        )
-        modality_trunks[ModalityType.IMU] = instantiate_trunk(
-            imu_embed_dim,
-            imu_num_blocks,
-            imu_num_heads,
-            pre_transformer_ln=False,
-            add_bias_kv=True,
-            drop_path=imu_drop_path,
-        )
+        # modality_trunks[ModalityType.DEPTH] = instantiate_trunk(
+        #     depth_embed_dim,
+        #     depth_num_blocks,
+        #     depth_num_heads,
+        #     pre_transformer_ln=False,
+        #     add_bias_kv=True,
+        #     drop_path=depth_drop_path,
+        # )
+        # modality_trunks[ModalityType.THERMAL] = instantiate_trunk(
+        #     thermal_embed_dim,
+        #     thermal_num_blocks,
+        #     thermal_num_heads,
+        #     pre_transformer_ln=False,
+        #     add_bias_kv=True,
+        #     drop_path=thermal_drop_path,
+        # )
+        # modality_trunks[ModalityType.IMU] = instantiate_trunk(
+        #     imu_embed_dim,
+        #     imu_num_blocks,
+        #     imu_num_heads,
+        #     pre_transformer_ln=False,
+        #     add_bias_kv=True,
+        #     drop_path=imu_drop_path,
+        # )
 
         return nn.ModuleDict(modality_trunks)
 
@@ -486,12 +486,12 @@ class ImageBindModel(nn.Module):
             nn.Linear(vision_embed_dim, out_embed_dim, bias=False),
         )
 
-        modality_heads[ModalityType.TEXT] = SelectEOSAndProject(
-            proj=nn.Sequential(
-                nn.LayerNorm(normalized_shape=text_embed_dim, eps=1e-6),
-                nn.Linear(text_embed_dim, out_embed_dim, bias=False),
-            )
-        )
+        # modality_heads[ModalityType.TEXT] = SelectEOSAndProject(
+        #     proj=nn.Sequential(
+        #         nn.LayerNorm(normalized_shape=text_embed_dim, eps=1e-6),
+        #         nn.Linear(text_embed_dim, out_embed_dim, bias=False),
+        #     )
+        # )
 
         modality_heads[ModalityType.AUDIO] = nn.Sequential(
             nn.LayerNorm(normalized_shape=audio_embed_dim, eps=1e-6),
@@ -499,24 +499,24 @@ class ImageBindModel(nn.Module):
             nn.Linear(audio_embed_dim, out_embed_dim, bias=False),
         )
 
-        modality_heads[ModalityType.DEPTH] = nn.Sequential(
-            nn.LayerNorm(normalized_shape=depth_embed_dim, eps=1e-6),
-            SelectElement(index=0) if use_selection else nn.Identity(),
-            nn.Linear(depth_embed_dim, out_embed_dim, bias=False),
-        )
-
-        modality_heads[ModalityType.THERMAL] = nn.Sequential(
-            nn.LayerNorm(normalized_shape=thermal_embed_dim, eps=1e-6),
-            SelectElement(index=0) if use_selection else nn.Identity(),
-            nn.Linear(thermal_embed_dim, out_embed_dim, bias=False),
-        )
-
-        modality_heads[ModalityType.IMU] = nn.Sequential(
-            nn.LayerNorm(normalized_shape=imu_embed_dim, eps=1e-6),
-            SelectElement(index=0) if use_selection else nn.Identity(),
-            nn.Dropout(p=0.5),
-            nn.Linear(imu_embed_dim, out_embed_dim, bias=False),
-        )
+        # modality_heads[ModalityType.DEPTH] = nn.Sequential(
+        #     nn.LayerNorm(normalized_shape=depth_embed_dim, eps=1e-6),
+        #     SelectElement(index=0) if use_selection else nn.Identity(),
+        #     nn.Linear(depth_embed_dim, out_embed_dim, bias=False),
+        # )
+        #
+        # modality_heads[ModalityType.THERMAL] = nn.Sequential(
+        #     nn.LayerNorm(normalized_shape=thermal_embed_dim, eps=1e-6),
+        #     SelectElement(index=0) if use_selection else nn.Identity(),
+        #     nn.Linear(thermal_embed_dim, out_embed_dim, bias=False),
+        # )
+        #
+        # modality_heads[ModalityType.IMU] = nn.Sequential(
+        #     nn.LayerNorm(normalized_shape=imu_embed_dim, eps=1e-6),
+        #     SelectElement(index=0) if use_selection else nn.Identity(),
+        #     nn.Dropout(p=0.5),
+        #     nn.Linear(imu_embed_dim, out_embed_dim, bias=False),
+        # )
 
         return nn.ModuleDict(modality_heads)
 
@@ -524,25 +524,25 @@ class ImageBindModel(nn.Module):
         modality_postprocessors = {}
 
         modality_postprocessors[ModalityType.VISION] = Normalize(dim=-1)
-        modality_postprocessors[ModalityType.TEXT] = nn.Sequential(
-            Normalize(dim=-1), LearnableLogitScaling(learnable=True)
-        )
+        # modality_postprocessors[ModalityType.TEXT] = nn.Sequential(
+        #     Normalize(dim=-1), LearnableLogitScaling(learnable=True)
+        # )
         modality_postprocessors[ModalityType.AUDIO] = nn.Sequential(
             Normalize(dim=-1),
             LearnableLogitScaling(logit_scale_init=20.0, learnable=False),
         )
-        modality_postprocessors[ModalityType.DEPTH] = nn.Sequential(
-            Normalize(dim=-1),
-            LearnableLogitScaling(logit_scale_init=5.0, learnable=False),
-        )
-        modality_postprocessors[ModalityType.THERMAL] = nn.Sequential(
-            Normalize(dim=-1),
-            LearnableLogitScaling(logit_scale_init=10.0, learnable=False),
-        )
-        modality_postprocessors[ModalityType.IMU] = nn.Sequential(
-            Normalize(dim=-1),
-            LearnableLogitScaling(logit_scale_init=5.0, learnable=False),
-        )
+        # modality_postprocessors[ModalityType.DEPTH] = nn.Sequential(
+        #     Normalize(dim=-1),
+        #     LearnableLogitScaling(logit_scale_init=5.0, learnable=False),
+        # )
+        # modality_postprocessors[ModalityType.THERMAL] = nn.Sequential(
+        #     Normalize(dim=-1),
+        #     LearnableLogitScaling(logit_scale_init=10.0, learnable=False),
+        # )
+        # modality_postprocessors[ModalityType.IMU] = nn.Sequential(
+        #     Normalize(dim=-1),
+        #     LearnableLogitScaling(logit_scale_init=5.0, learnable=False),
+        # )
 
         return nn.ModuleDict(modality_postprocessors)
 
@@ -612,7 +612,7 @@ def imagebind_huge(pretrained=False, freeze_imagebind=False, with_head=True, use
                 progress=True,
             )
 
-        model.load_state_dict(torch.load(".checkpoints/imagebind_huge.pth"))
+        model.load_state_dict(torch.load(".checkpoints/imagebind_huge.pth"), strict=False)
 
     if use_blip_vision:
         from bubogpt.models.eva_vit import create_eva_vit_g
@@ -643,7 +643,7 @@ class LayerNorm(nn.LayerNorm):
         return ret.type(orig_type)
 
 
-def load_ln_params(path="https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained_flant5xxl.pth"):
+def load_ln_params(path="checkpoints/blip2_pretrained_flant5xxl.pth"):
     state_dict = torch.load(path, map_location="cpu")["model"]
     params = type(state_dict)()
     params["weight"] = state_dict["ln_vision.weight"]

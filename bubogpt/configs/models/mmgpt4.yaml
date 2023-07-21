@@ -6,11 +6,11 @@ model:
 
   # Q-Former
   freeze_qformer: True
-  q_former_model: "/path/to/blip2_pretrained_flant5xxl.pth"
+  q_former_model: "checkpoints/blip2_pretrained_flant5xxl.pth"
   num_query_token: 32
 
   # Vicuna
-  llama_model: "/path/to/vicuna-7b-v0/"
+  llama_model: "magicr/vicuna-7b"
 
   # generation configs
   prompt: ""

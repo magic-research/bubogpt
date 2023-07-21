@@ -78,30 +78,32 @@ class MMGPT4(BaseModel):
 
         self.low_resource = low_resource
 
+        import gc
         print('Loading ImageBind')
         self.multimodal_encoder = imagebind_huge(pretrained=True, freeze_imagebind=freeze_imagebind,
                                                  with_head=with_bind_head, use_blip_vision=use_blip_vision)
         print('Loading ImageBind Done')
+        gc.collect()
 
         print(f'Loading LLAMA from {llama_model}')
-        self.llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model, use_fast=False)
+        self.llama_tokenizer = LlamaTokenizer.from_pretrained(llama_model, use_fast=False, use_auth_token=True)
         self.llama_tokenizer.pad_token = self.llama_tokenizer.eos_token
 
-        self.llama_model = LlamaForCausalLM.from_pretrained(
-            llama_model,
-            torch_dtype=torch.float16,
-        )
+        self.llama_model = LlamaForCausalLM.from_pretrained(llama_model, load_in_8bit=True,
+                                                            torch_dtype=torch.float16, device_map="auto", use_auth_token=True)
 
         if freeze_llm:
             for name, param in self.llama_model.named_parameters():
                 param.requires_grad = False
         print('Loading LLAMA Done')
+        gc.collect()
 
         print('Loading Q-Former and Adapter/Projector')
         self.multimodal_joiner = ImageBindJoiner(joiner_cfg, output_dim=self.llama_model.config.hidden_size)
         if use_blip_vision:
             replace_joiner_vision(self.multimodal_joiner, q_former_model, proj_model)
         print('Loading Q-Former and Adapter/Projector Done')
+        gc.collect()
 
         self.max_txt_len = max_txt_len
         self.end_sym = end_sym
@@ -257,7 +259,7 @@ class MMGPT4(BaseModel):
         joiner_cfg = cfg.get("joiner_cfg")
         q_former_model = cfg.get(
             "q_former_model",
-            "/mnt/bn/bykang/chixma/data/pretrained_models/blip2_pretrained_flant5xxl.pth",
+            "checkpoints/blip2_pretrained_flant5xxl.pth",
         )
         num_query_token = cfg.get("num_query_token")
         llama_model = cfg.get("llama_model")

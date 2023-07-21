@@ -8,6 +8,7 @@ from ram.models import ram
 class TaggingModule(nn.Module):
     def __init__(self, device='cpu'):
         super().__init__()
+        import gc
         self.device = device
         image_size = 384
         self.transform = transforms.Compose([
@@ -23,6 +24,7 @@ class TaggingModule(nn.Module):
             vit='swin_l'
         ).eval().to(device)
         print('==> Tagging Module Loaded.')
+        gc.collect()
 
     @torch.no_grad()
     def forward(self, original_image):

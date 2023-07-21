@@ -17,11 +17,13 @@ from groundingdino.util.utils import clean_state_dict
 
 
 def load_groundingdino_model(model_config_path, model_checkpoint_path):
+    import gc
     args = CN.load_cfg(open(model_config_path, "r"))
     model = build_groundingdino(args)
     checkpoint = torch.load(model_checkpoint_path, map_location="cpu")
     load_res = model.load_state_dict(clean_state_dict(checkpoint["model"]), strict=False)
     print('loading GroundingDINO:', load_res)
+    gc.collect()
     _ = model.eval()
     return model
 
