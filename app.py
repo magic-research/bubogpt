@@ -173,7 +173,7 @@ def gradio_answer(image, chatbot, chat_state, emb_list, num_beams, temperature, 
         entity_state['match_state'] = match_state  # item_id -> local_id
         new_grounded_image = grounding_dino.draw(image, entity_state)
         show_legend = bool(match_state)
-        print('gradio_answer ==> current state: ', entity_state)
+        # print('gradio_answer ==> current state: ', entity_state)
 
         # if args.ground_all:
         #     ground_img, local_results = grounding_dino.prompt2mask(image,
@@ -203,7 +203,7 @@ def grounding_fn(image, chatbot, entity_state):
             'full': ground_img,
             'local': local_results
         }
-        print('grounding_fn ==> current state: ', entity_state)
+        # print('grounding_fn ==> current state: ', entity_state)
         return chatbot, gr.update(value=ground_img, interactive=False), entity_state
     return chatbot, gr.update(value=None, interactive=False), entity_state
 
@@ -215,7 +215,7 @@ def select_fn(image, ground_img, entity_state, evt: gr.SelectData):
 
     if label is None:
         return ground_img
-    print('select_fn ==> current state: ', entity_state)
+    # print('select_fn ==> current state: ', entity_state)
     torch.cuda.synchronize()
     if 'grounding' not in entity_state:
         ground_img, local_results = grounding_dino.prompt2mask2(image,
