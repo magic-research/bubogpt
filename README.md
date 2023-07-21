@@ -17,6 +17,10 @@ class="center">
 [Yang Zhao*](https://scholar.google.com/citations?user=uPmTOHAAAAAJ&hl=en), [Zhijie Lin*](https://scholar.google.com/citations?user=xXMj6_EAAAAJ&hl=en), [Daquan Zhou](https://scholar.google.com/citations?user=DdCAbWwAAAAJ&hl=en), [Zilong Huang](https://scholar.google.com.sg/citations?user=GW9vw8UAAAAJ&hl=en), [Jiashi Feng](https://sites.google.com/site/jshfeng/) and [Bingyi Kang†](https://scholar.google.com.sg/citations?user=NmHgX-wAAAAJ&hl=en) (*Equal Contribution, †Project Lead)  <br>
 Bytedance Inc.
 
+[![HuggingFace space](https://img.shields.io/badge/🤗-HuggingFace%20Space-cyan.svg)](https://huggingface.co/spaces/magicr/BuboGPT)
+
+## News🔥
+2023/07/21 - Huggingface demo released!
 
 
 ## Setup
