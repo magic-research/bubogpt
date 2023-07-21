@@ -656,8 +656,9 @@ def replace_joiner_vision(joiner, q_former_model, proj_model):
 
     joiner.modality_qformers[ModalityType.VISION].load_Qformer(q_former_model)
 
-    state_dict = torch.load(proj_model, map_location="cpu")["model"]
-    params = type(state_dict)()
-    params["fc.weight"] = state_dict["llama_proj.weight"]
-    params["fc.bias"] = state_dict["llama_proj.bias"]
-    joiner.modality_post_projectors[ModalityType.VISION].load_state_dict(params, strict=False)
+    if proj_model:
+        state_dict = torch.load(proj_model, map_location="cpu")["model"]
+        params = type(state_dict)()
+        params["fc.weight"] = state_dict["llama_proj.weight"]
+        params["fc.bias"] = state_dict["llama_proj.bias"]
+        joiner.modality_post_projectors[ModalityType.VISION].load_state_dict(params, strict=False)
